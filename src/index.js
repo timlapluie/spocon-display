@@ -4,6 +4,7 @@ import Request from 'superagent'
 import './index.css';
 
 class CurrentSong extends React.Component {
+
   constructor(props) {
     super(props);
     this.state = {
@@ -13,8 +14,13 @@ class CurrentSong extends React.Component {
     };
   }
 
+  get spoconHost() {
+    // Adjust spoconHost to point to your spocon host
+    return 'hifistereo.local:24879';
+  }
+
   get apiUrl() {
-    return 'http://hifistereo.local:24879';
+    return `http://${this.spoconHost}`;
   }
 
   get webApiUrl() {
@@ -52,7 +58,7 @@ class CurrentSong extends React.Component {
   }
 
   componentDidMount() {
-    var ws = new WebSocket('ws://hifistereo.local:24879/events');
+    var ws = new WebSocket(`ws://${this.spoconHost}/events`);
 
     ws.onopen = () => {
       Request.get(`${this.webApiUrl}/me/player/currently-playing`)
