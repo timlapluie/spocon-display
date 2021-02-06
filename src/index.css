@@ -5,9 +5,50 @@ body {
     sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+  background-color: #000;
 }
 
-code {
-  font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
-    monospace;
+.spocon-display .track-cover {
+  position: absolute;
+  top: calc(50vh - 320px);
+  left: calc(50vw - 320px);
+  width: 640px;
+  height: 640px;
+}
+
+.spocon-display .track-info {
+  position: absolute;
+  top: calc(50vh - 320px);
+  left: calc(50vw - 320px);
+  width: 640px;
+  height: 640px;
+  color: white;
+  z-index: 10;
+}
+
+.spocon-display .track-info .box {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 640px;
+  text-shadow: 0px 0px 10px #000;
+  background-color: rgba(45, 45, 45, 0.5);
+  font-weight: 300;
+}
+
+.spocon-display .track-info .box .title {
+  font-size: 40px;
+  padding: 10px 20px 0 20px;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.spocon-display .track-info .box .artist {
+  font-size: 30px;
+  padding-left: 10px;
+  padding: 0 20px 10px 20px;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
 }
