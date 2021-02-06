@@ -13,8 +13,12 @@ class CurrentSong extends React.Component {
     };
   }
 
+  get apiUrl() {
+    return 'http://hifistereo.local:24879';
+  }
+
   get webApiUrl() {
-    return 'http://hifistereo.local:24879/web-api/v1';
+    return `${this.apiUrl}/web-api/v1`;
   }
 
   trackUrl(type, id) {
@@ -37,8 +41,14 @@ class CurrentSong extends React.Component {
     var ws = new WebSocket('ws://hifistereo.local:24879/events');
 
     ws.onopen = () => {
-      console.log('Connection established.');
-      // TODO: Display track info for current track
+      Request.get(`${this.webApiUrl}/me/player/currently-playing`)
+        .then(response => {
+          this.setState({
+            artist: this.artistNames(response.body.item),
+            title: response.body.item.name,
+            cover: this.coverImageUrl(response.body.item)
+          });
+        });
     };
 
     ws.onmessage = (evt) => {
