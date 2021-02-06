@@ -37,6 +37,20 @@ class CurrentSong extends React.Component {
     }
   }
 
+  previousTrack() {
+    Request.post(`${this.apiUrl}/player/prev`)
+      .then(response => {
+        console.log('Previous track');
+      });
+  }
+
+  nextTrack() {
+    Request.post(`${this.apiUrl}/player/next`)
+      .then(response => {
+        console.log('Next track');
+      });
+  }
+
   componentDidMount() {
     var ws = new WebSocket('ws://hifistereo.local:24879/events');
 
@@ -90,14 +104,24 @@ class CurrentSong extends React.Component {
     if (this.state.title) {
       return (
         <div className='spocon-display'>
+          <button
+            className='previous-track'
+            onClick={this.previousTrack.bind(this)}
+            title='<<<'
+          />
+          <button
+            className='next-track'
+            onClick={this.nextTrack.bind(this)}
+            title='>>>'
+          />
+          <div className='track-cover'>
+            <img className='cover-image' src={this.state.cover} />
+          </div>
           <div className='track-info'>
             <div className='box'>
               <div className='title'>{this.state.title}</div>
               <div className='artist'>{this.state.artist}</div>
             </div>
-          </div>
-          <div className='track-cover'>
-            <img src={this.state.cover} />
           </div>
         </div>
       );
