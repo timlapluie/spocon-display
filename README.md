@@ -1,12 +1,12 @@
 # spocon-display
 A React app to view and control current track of a [Spocon](https://github.com/spocon/spocon) server. Spocon is a great project to build your own Spotify Connect Server, you have to check it out, it is awesome ♥️
 
-It uses a WebSocket connection to receive events from a running spocon server and updates track
+This app uses a WebSocket connection to receive events from a running spocon server and updates track
 information and cover image to the current track that's played.
 
 ### Controls
-* Click anywhere on the left halt of the screen to jump to the previous track
-* Click anywhere on the right halt of the screen to jump to the next track
+* Click anywhere on the left half of the screen to jump to the previous track
+* Click anywhere on the right half of the screen to jump to the next track
 
 ![spocon-display](/docs/spocon-display.png)
 
