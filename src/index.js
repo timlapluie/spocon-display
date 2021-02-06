@@ -4,7 +4,6 @@ import Request from 'superagent'
 import './index.css';
 
 class CurrentSong extends React.Component {
-
   constructor(props) {
     super(props);
     this.state = {
@@ -27,8 +26,17 @@ class CurrentSong extends React.Component {
     return `${this.apiUrl}/web-api/v1`;
   }
 
-  trackUrl(type, id) {
-    return `${this.webApiUrl}/${type}s/${id}`;
+  fetchCurrentSong() {
+    Request.get(`${this.webApiUrl}/me/player/currently-playing`)
+      .then(response => {
+        if (response.status == 200) {
+          this.setState({
+            artist: this.artistNames(response.body.item),
+            title: response.body.item.name,
+            cover: this.coverImageUrl(response.body.item)
+          });
+        }
+      });
   }
 
   coverImageUrl(response) {
@@ -61,16 +69,7 @@ class CurrentSong extends React.Component {
     var ws = new WebSocket(`ws://${this.spoconHost}/events`);
 
     ws.onopen = () => {
-      Request.get(`${this.webApiUrl}/me/player/currently-playing`)
-        .then(response => {
-          if (response.status == 200) {
-            this.setState({
-              artist: this.artistNames(response.body.item),
-              title: response.body.item.name,
-              cover: this.coverImageUrl(response.body.item)
-            });
-          }
-        });
+      this.fetchCurrentSong();
     };
 
     ws.onmessage = (evt) => {
@@ -78,16 +77,7 @@ class CurrentSong extends React.Component {
 
       switch (eventData.event) {
         case 'trackChanged':
-          var uriData = eventData.uri.split(':');
-          var url = this.trackUrl(uriData[1], uriData[2]);
-
-          Request.get(url).then(response => {
-            this.setState({
-              artist: this.artistNames(response.body),
-              title: response.body.name,
-              cover: this.coverImageUrl(response.body)
-            });
-          });
+          this.fetchCurrentSong();
           break;
         case 'playbackEnded':
         case 'inactiveSession':
