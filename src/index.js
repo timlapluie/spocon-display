@@ -63,11 +63,13 @@ class CurrentSong extends React.Component {
     ws.onopen = () => {
       Request.get(`${this.webApiUrl}/me/player/currently-playing`)
         .then(response => {
-          this.setState({
-            artist: this.artistNames(response.body.item),
-            title: response.body.item.name,
-            cover: this.coverImageUrl(response.body.item)
-          });
+          if (response.status == 200) {
+            this.setState({
+              artist: this.artistNames(response.body.item),
+              title: response.body.item.name,
+              cover: this.coverImageUrl(response.body.item)
+            });
+          }
         });
     };
 
