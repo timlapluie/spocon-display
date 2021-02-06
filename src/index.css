@@ -6,6 +6,8 @@ body {
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   background-color: #000;
+  margin: 0;
+  padding: 0;
 }
 
 .spocon-display .previous-track {
@@ -34,34 +36,28 @@ body {
 
 .spocon-display .track-cover {
   margin: 0 auto;
-  width: 640px;
-  height: 640px;
-  max-width: min(100vw, 100vh);
-  max-height: min(100vw, 100vh);
+  width: calc(min(100vw, 100vh) - 3px);
+  height: calc(min(100vw, 100vh) - 3px);
 }
 
 .spocon-display .track-cover .cover-image {
   margin: 0 auto;
-  width: 640px;
-  height: 640px;
-  max-width: min(100vw, 100vh);
-  max-height: min(100vw, 100vh);
+  width: calc(min(100vw, 100vh) - 3px);
+  height: calc(min(100vw, 100vh) - 3px);
 }
 
 .spocon-display .track-info {
   margin: 0 auto;
-  width: 640px;
-  max-width: min(100vw, 100vh);
+  width: calc(min(100vw, 100vh) - 3px);
   color: white;
   z-index: 10;
   position: relative;
-  margin-top: -103px;
+  margin-top: -101px;
 }
 
 .spocon-display .track-info .box {
   float: left;
-  width: 640px;
-  max-width: min(100vw, 100vh);
+  width: calc(min(100vw, 100vh) - 3px);
   text-shadow: 0px 0px 10px #000;
   background-color: rgba(45, 45, 45, 0.5);
   font-weight: 300;
