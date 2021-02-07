@@ -105,12 +105,10 @@ class CurrentSong extends React.Component {
           <button
             className='previous-track'
             onClick={this.previousTrack.bind(this)}
-            title='<<<'
           />
           <button
             className='next-track'
             onClick={this.nextTrack.bind(this)}
-            title='>>>'
           />
           <div className='track-cover'>
             <img className='cover-image' src={this.state.cover} />

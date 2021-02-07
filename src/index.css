@@ -34,21 +34,42 @@ body {
   cursor: pointer;
 }
 
+.spocon-display {
+  margin-top: calc((100vh - min(100vw, 100vh, 640px))/2);
+  animation-name: turn-cover;
+  animation-duration: 20s;
+  animation-delay: 18s;
+  animation-iteration-count: infinite;
+  animation-timing-function: move;
+}
+
+@keyframes turn-cover {
+  0%   {transform: rotateY(0deg);}
+  5%  {transform: rotateY(90deg);}
+  10% {transform: rotateY(0deg);}
+  100% {transform: rotateY(0deg);}
+}
+
 .spocon-display .track-cover {
   margin: 0 auto;
-  width: calc(min(100vw, 100vh) - 3px);
-  height: calc(min(100vw, 100vh) - 3px);
+  width: 640px;
+  height: 640px;
+  max-width: calc(min(100vw, 100vh) - 3px);
+  max-height: calc(min(100vw, 100vh) - 3px);
 }
 
 .spocon-display .track-cover .cover-image {
   margin: 0 auto;
-  width: calc(min(100vw, 100vh) - 3px);
-  height: calc(min(100vw, 100vh) - 3px);
+  width: 640px;
+  height: 640px;
+  max-width: calc(min(100vw, 100vh) - 3px);
+  max-height: calc(min(100vw, 100vh) - 3px);
 }
 
 .spocon-display .track-info {
   margin: 0 auto;
-  width: calc(min(100vw, 100vh) - 3px);
+  width: 640px;
+  max-width: calc(min(100vw, 100vh) - 3px);
   color: white;
   z-index: 10;
   position: relative;
@@ -57,7 +78,8 @@ body {
 
 .spocon-display .track-info .box {
   float: left;
-  width: calc(min(100vw, 100vh) - 3px);
+  width: 640px;
+  max-width: calc(min(100vw, 100vh) - 3px);
   text-shadow: 0px 0px 10px #000;
   background-color: rgba(45, 45, 45, 0.5);
   font-weight: 300;
