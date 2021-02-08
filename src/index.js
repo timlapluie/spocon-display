@@ -39,6 +39,23 @@ class CurrentSong extends React.Component {
       });
   }
 
+  fetchSong(eventUri) {
+    const splitEventUri = eventUri.split(':');
+    const songType = `${splitEventUri[1]}s`;
+    const songId = splitEventUri[2];
+
+    Request.get(`${this.webApiUrl}/${songType}/${songId}`)
+      .then(response => {
+        if (response.status == 200) {
+          this.setState({
+            artist: this.artistNames(response.body),
+            title: response.body.name,
+            cover: this.coverImageUrl(response.body)
+          });
+        }
+      });
+  }
+
   coverImageUrl(response) {
     const parentObject = response.album ? response.album : response;
 
@@ -77,7 +94,7 @@ class CurrentSong extends React.Component {
 
       switch (eventData.event) {
         case 'trackChanged':
-          this.fetchCurrentSong();
+          this.fetchSong(eventData.uri);
           break;
         case 'playbackEnded':
         case 'inactiveSession':
