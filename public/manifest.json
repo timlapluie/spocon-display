@@ -1,6 +1,6 @@
 {
-  "short_name": "React App",
-  "name": "Create React App Sample",
+  "short_name": "Now Playing",
+  "name": "Now Playing on Spocon Server",
   "icons": [
     {
       "src": "favicon.ico",
