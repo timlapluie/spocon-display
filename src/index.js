@@ -1,6 +1,6 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-import Request from 'superagent'
+import Request from 'superagent';
 import './index.css';
 
 class CurrentSong extends React.Component {
